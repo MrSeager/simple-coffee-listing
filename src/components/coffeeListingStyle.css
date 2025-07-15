@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    background-color: #1B1D1F !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.cs-max-w {
+    max-width: 1980px !important;
+}
+
+.cs-mt {
+    margin-top: 150px !important;
+}
+
+.cs-transition {
+    transition: .5s !important;
+}
+
+.cs-w {
+   width: 500px !important; 
+}
+
+.cs-w-two {
+    width: 75% !important;
+}
+
+/*Background*/
+.cs-bg-image {
+    background: url('../resources/bg-cafe-lg.jpg') no-repeat top center / 100% auto;
+    background-color: #111315 !important;
+}
+
+.cs-bg-one {
+    background-color: #1B1D1F !important;
+}
+
+.cs-bg-vector {
+    background: url('../resources/vector.svg') no-repeat top right;
+}
+
+/*Font*/
+.cs-tc-one {
+    color: #FEF7EE !important;
+}
+
+.cs-tc-two {
+    color: #6F757C !important;
+}
+
+/*Buttons*/
+.cs-btn:hover,
+.cs-btn:focus {
+    background-color: #6F757C !important;
+}
