@@ -24,6 +24,8 @@ interface coffeeItemProps {
 
 const CoffeListingPage: FC = () => {
     const [coffeeItems, setCoffeeItems] = useState<coffeeItemProps[]>([]);
+    const [filteredCoffeeItems, setFilteredCoffeeItems] = useState<coffeeItemProps[]>([]);
+    const [availableFilter, setAvailableFilter] = useState<boolean>(false);
 
     useEffect(() => {
         axios.get('https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/heads/main/4-frontend-libaries/challenges/group_1/data/simple-coffee-listing-data.json').then((response) => {
@@ -31,12 +33,22 @@ const CoffeListingPage: FC = () => {
         });
     }, []);
 
+    useEffect(() => {
+        const filtered = availableFilter
+            ? coffeeItems.filter(item => item.available)
+            : coffeeItems;
+
+        setFilteredCoffeeItems(filtered);
+    }, [coffeeItems, availableFilter]);
+
     return (
-        <Container fluid className='pt-5 cs-max-w cs-bg-image shadow min-vh-100'>
+        <Container fluid className='py-5 cs-max-w cs-bg-image shadow min-vh-100'>
             <Container className='cs-bg-one cs-mt rounded rounded-3 py-5'>
-                <CLTop />
+                <CLTop
+                    setAvailableFilter={setAvailableFilter}
+                />
                 <CoffeList 
-                    coffeeItems={coffeeItems}
+                    coffeeItems={filteredCoffeeItems}
                 />
             </Container>
         </Container>
