@@ -25,7 +25,7 @@ const CoffeList: FC<CoffeListProps> = ({ coffeeItems }) => {
         <Row className='cs-w-two mx-auto px-0'>
             {coffeeItems.length > 0 ? (
                 coffeeItems.map((item, index) => (
-                    <Col index={index} lg={4} md={6} xs={12} className='px-3 py-2'>
+                    <Col index={index} lg={4} md={6} xs={12} className='px-md-3 py-2 px-0'>
                         <CoffeeItem
                             item={item}
                         />

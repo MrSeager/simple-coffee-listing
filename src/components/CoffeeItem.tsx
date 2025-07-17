@@ -1,9 +1,13 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+//Components
+import { useHover } from './anim.tsx';
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.css';
-import { Row, Col, Spinner, Card, Badge } from 'react-bootstrap';
+import { Card, Badge } from 'react-bootstrap';
 //Icons
 import { FaStar, FaRegStar } from "react-icons/fa";
+//Spring
+import { useSpring, animated } from '@react-spring/web';
 
 interface itemProps {
     id: number,
@@ -21,8 +25,17 @@ interface CoffeeItemProps {
 }
 
 const CoffeeItem: FC<CoffeeItemProps> = ({ item }) => {
+    const [isHover, setIsHover] = useState<boolean>(false);
+
+    const animHover = useHover(isHover, 1.05);
+
     return (
-        <Card className='border-0 bg-transparent position-relative'>
+        <animated.div
+            style={animHover}
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)} 
+            className='user-select-none card border-0 bg-transparent position-relative'
+        >
             <Card.Img 
                 variant='top' 
                 src={item.image} 
@@ -56,7 +69,7 @@ const CoffeeItem: FC<CoffeeItemProps> = ({ item }) => {
                     : ''
                 }
             </Card.Body>
-        </Card>
+        </animated.div>
     );
 }
 

@@ -3,13 +3,14 @@ import { FC, useState, useEffect } from 'react';
 import './coffeeListingStyle.css';
 import CLTop from './CLTop.tsx';
 import CoffeList from './CoffeeList.tsx';
+import { useScale } from './anim.tsx';
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container, ButtonGroup, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 //Axios
 import axios from 'axios';
 //Spring
-import { useSpring, animated } from '@react-spring/web';
+import { animated } from '@react-spring/web';
 
 interface coffeeItemProps {
     id: number,
@@ -41,17 +42,23 @@ const CoffeListingPage: FC = () => {
         setFilteredCoffeeItems(filtered);
     }, [coffeeItems, availableFilter]);
 
+    const blindsAnim = useScale(200);
+
     return (
         <Container fluid className='py-5 cs-max-w cs-bg-image shadow min-vh-100'>
-            <Container className='cs-bg-one cs-mt rounded rounded-3 py-5'>
-                <CLTop
-                    setAvailableFilter={setAvailableFilter}
-                />
-                <CoffeList 
-                    coffeeItems={filteredCoffeeItems}
-                />
-            </Container>
+                <animated.div
+                    style={{ ...blindsAnim, transformOrigin: 'top' }}
+                    className='container cs-bg-one cs-mt rounded rounded-3 py-5'
+                >
+                    <CLTop
+                        setAvailableFilter={setAvailableFilter}
+                    />
+                    <CoffeList 
+                        coffeeItems={filteredCoffeeItems}
+                    />
+                </animated.div>
         </Container>
     );
 }
- export default CoffeListingPage;
+
+export default CoffeListingPage;
